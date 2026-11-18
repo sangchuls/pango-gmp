@@ -61,7 +61,7 @@
 - 2026-08 ~ 09: 언어 전환, PDF/Word/PPT 내보내기, SLD
 - 2026-11-07: 전기실 세트·POD 부하 블럭 모델, 자동 검토 의견, Vera Rubin POD 부하 반영
 - 2026-11-08~11: 평·단면 블럭, 데이터홀 랙 구성, AC/LC 냉각 분담, 급전 방식 확장, 개선 의견 수집 (11-09 `b07d83a`)
-- 전 커밋이 Claude Code 개발 이력인지 [확인 필요] (회고적 사례로 쓰려면 개발자 확인)
+- 전 커밋 Claude Code 개발 (저자 확인 2026-11-18, 회고적 사례로 서술)
 
 ## 9. 계획서 반영 시 주의
 1. 초안 4.1은 "AI Factory Study(ai-factory-study.vercel.app)"를 별도 앱 ②로 둠. 앱 ①의 `index.html:147`에 `ai-factory-study.vercel.app/#/pod/basic`으로 가는 "POD 구성 ↗" 링크와 "구성 JSON 적용"(POD 구성을 JSON으로 받아 붙여넣기) 기능이 있어, **②는 별도 앱이고 ①과 JSON 수동 전달로 연결됨** ✔. 다만 ②의 저장소는 `sangchuls` 공개 저장소 목록에 없어 소스 분석 불가 → 이후 확인: 비공개 저장소 `sangchuls/ai-factory-study`, 분석은 `app2_ai-factory-study.md`. ①의 ⑥(랙 구성·냉각)에도 유사 기능이 있어 ②와의 역할 중복 여부 [확인 필요]
