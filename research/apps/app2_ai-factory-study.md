@@ -4,6 +4,8 @@
 - 분석 기준: 커밋 `12122d7`(v0.11.1, 2026-10-28), 총 3커밋. `js/pod.js` 604줄, `app.js` 172, `trend.js` 104, `vdc.js` 100, `sources.js` 59, `glossary-data.js` 75, `tests/run.js` 56
 - 표기: ✔ 코드·문서에서 직접 확인 / [확인 필요]
 
+- 배포본 대조(2026-11-18): ai-factory-study.vercel.app의 루트 `index.html`과 css/js 7개 파일이 저장소 `12122d7`과 바이트 단위로 동일 ✔ (`/index.html`은 `cleanUrls`로 리다이렉트되어 루트로 비교). 이미지 자산 응답 200 ✔
+
 ## 1. 성격 (앱 ①과 다른 점)
 - 계산기가 아니라 **"출처를 단 지식 문서형 앱"**: AI Factory가 요구하는 건축 공간을 NVIDIA 등 공개 자료와 함께 정리한 정적 웹앱, 빌드·외부 의존성 없음 ✔ (README)
 - 화면: 변화와 공간(`#/trend`), 800 VDC(`#/800vdc`), Server POD Study(`#/pod/<탭>`: 개요·기본·Type-1/2/3), 용어 29개, 출처 ✔
