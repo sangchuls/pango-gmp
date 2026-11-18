@@ -62,6 +62,6 @@
 - 전 커밋이 Claude Code 개발 이력인지 [확인 필요] (회고적 사례로 쓰려면 개발자 확인)
 
 ## 9. 계획서 반영 시 주의
-1. 초안 4.1은 "AI Factory Study(ai-factory-study.vercel.app)"를 별도 앱 ②로 둠. 앱 ①의 `index.html:147`에 `ai-factory-study.vercel.app/#/pod/basic`으로 가는 "POD 구성 ↗" 링크와 "구성 JSON 적용"(POD 구성을 JSON으로 받아 붙여넣기) 기능이 있어, **②는 별도 앱이고 ①과 JSON 수동 전달로 연결됨** ✔. 다만 ②의 저장소는 `sangchuls` 공개 저장소 목록에 없어 소스 분석 불가 [저장소 이름/공개 여부 확인 필요]. ①의 ⑥(랙 구성·냉각)에도 유사 기능이 있어 ②와의 역할 중복 여부 [확인 필요]
+1. 초안 4.1은 "AI Factory Study(ai-factory-study.vercel.app)"를 별도 앱 ②로 둠. 앱 ①의 `index.html:147`에 `ai-factory-study.vercel.app/#/pod/basic`으로 가는 "POD 구성 ↗" 링크와 "구성 JSON 적용"(POD 구성을 JSON으로 받아 붙여넣기) 기능이 있어, **②는 별도 앱이고 ①과 JSON 수동 전달로 연결됨** ✔. 다만 ②의 저장소는 `sangchuls` 공개 저장소 목록에 없어 소스 분석 불가 → 이후 확인: 비공개 저장소 `sangchuls/ai-factory-study`, 분석은 `app2_ai-factory-study.md`. ①의 ⑥(랙 구성·냉각)에도 유사 기능이 있어 ②와의 역할 중복 여부 [확인 필요]
 2. 계정에는 `datahall-section-check`, `generator-calc`, `DC_Infra_Ontolog`도 있음. 앞서 정리한 작성 규칙은 앞의 둘을 사례로 언급했으므로 계획서의 앱 범위 확정 필요
 3. 이 앱은 수치가 많아 "자동 계산이므로 정확하다"는 서술 금지. §4, §6 한계를 같이 적을 것
