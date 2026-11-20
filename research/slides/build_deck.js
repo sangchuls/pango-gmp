@@ -12,7 +12,7 @@ const THEME = {
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_WIDE';            // 13.33 x 7.5
 pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
-pres.title = '데이터센터 초기 계획설계 검토용 Micro-App의 지식 도구화 특성 분석';
+pres.title = '건축 초기 계획설계의 지식 확장을 위한 Micro-App 분석';
 pres.author = '임상철';
 const C = pres.SchemeColor;
 
@@ -31,29 +31,33 @@ pres.defineSlideMaster({
 
 const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margin: 0 }, o));
 
-// ================= Slide 1: 배경·문제의식 =================
+// ================= Slide 1: 배경·문제의식 (일반 문제 → 데이터센터) =================
 {
   const s = pres.addSlide({ masterName: 'DARK' });
-  s.addText('데이터센터 초기 계획설계 검토용 Micro-App의 지식 도구화 특성 분석', { placeholder: 'title' });
-  T(s, '바이브 코딩으로 개발한 검토 앱 3개 사례를 중심으로', { x: 0.7, y: 2.45, w: 8.3, h: 0.5, fontSize: 18, color: C.accent6, objectName: '부제' });
-  // 통계 카드
-  s.addShape(pres.ShapeType.roundRect, { x: 9.5, y: 0.7, w: 3.2, h: 2.5, fill: { color: C.accent5 }, rectRadius: 0.12, objectName: '통계 카드' });
-  T(s, '415 → 945', { x: 9.5, y: 0.85, w: 3.2, h: 0.9, fontSize: 40, bold: true, color: C.accent2, align: 'center', valign: 'middle', objectName: '통계 수치' });
-  T(s, 'TWh', { x: 9.5, y: 1.7, w: 3.2, h: 0.35, fontSize: 16, color: C.accent2, align: 'center', objectName: '통계 단위' });
-  T(s, '전 세계 데이터센터 전력 소비\n2024년 → 2030년 전망', { x: 9.7, y: 2.1, w: 2.8, h: 0.75, fontSize: 14, color: C.background1, align: 'center', objectName: '통계 설명' });
-  T(s, '자료: IEA(2025), Energy and AI', { x: 9.5, y: 3.28, w: 3.2, h: 0.3, fontSize: 10, color: C.accent6, align: 'center', objectName: '통계 출처' });
-  // 문제 흐름
-  const bx = [['초기 설계 단계', '전문 검토 전, 경험에 기댄 가정'], ['전문 검토 결과', '초기 가정과 달라질 수 있음'], ['공간계획 변경', '설비실·데이터홀 재작업 발생']];
+  s.addText('건축 초기 계획설계의 지식 확장을 위한 Micro-App 분석', { placeholder: 'title' });
+  T(s, '바이브 코딩으로 개발한 데이터센터 검토 앱 3개 사례를 중심으로', { x: 0.7, y: 2.2, w: 8.5, h: 0.5, fontSize: 18, color: C.accent6, objectName: '부제' });
+  // 1단계: 일반 문제
+  T(s, '1  초기 계획설계의 문제', { x: 0.7, y: 3.0, w: 6, h: 0.4, fontSize: 16, bold: true, color: C.accent2, objectName: '1단계 라벨' });
+  const bx = [['건축 외 분야 조건', '전문 검토 전에 설계자가 가정'], ['전문 검토 결과', '가정과 달라질 수 있음'], ['공간계획 변경', '재작업 발생 → 지식 확장 필요']];
   bx.forEach((b, i) => {
     const x = 0.7 + i * 4.15;
-    s.addShape(pres.ShapeType.roundRect, { x, y: 3.85, w: 3.5, h: 1.5, fill: { color: C.accent5 }, rectRadius: 0.1, objectName: `문제 상자 ${i + 1}` });
-    T(s, b[0], { x: x + 0.2, y: 3.98, w: 3.1, h: 0.45, fontSize: 18, bold: true, color: C.accent2, objectName: `문제 제목 ${i + 1}` });
-    T(s, b[1], { x: x + 0.2, y: 4.5, w: 3.1, h: 0.75, fontSize: 15, color: C.background1, valign: 'top', objectName: `문제 설명 ${i + 1}` });
-    if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 3.6, y: 4.35, w: 0.45, h: 0.38, fill: { color: C.accent4 }, objectName: `화살표 ${i + 1}` });
+    s.addShape(pres.ShapeType.roundRect, { x, y: 3.45, w: 3.5, h: 1.25, fill: { color: C.accent5 }, rectRadius: 0.1, objectName: `문제 상자 ${i + 1}` });
+    T(s, b[0], { x: x + 0.2, y: 3.55, w: 3.1, h: 0.45, fontSize: 18, bold: true, color: C.background1, objectName: `문제 제목 ${i + 1}` });
+    T(s, b[1], { x: x + 0.2, y: 4.05, w: 3.1, h: 0.55, fontSize: 15, color: C.accent6, valign: 'top', objectName: `문제 설명 ${i + 1}` });
+    if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 3.6, y: 3.9, w: 0.45, h: 0.38, fill: { color: C.accent4 }, objectName: `화살표 ${i + 1}` });
   });
-  T(s, '목적: 실무자가 생성형 AI로 만든 검토 앱의 지식 명시화·검증·공유 방식을 분석하고 개선 방향을 제시', { x: 0.7, y: 5.75, w: 12, h: 0.55, fontSize: 18, bold: true, color: C.background1, objectName: '연구 목적' });
-  T(s, '공학대학원 건축학전공  |  임상철 (2026160492)  |  담당교수 김영주  |  2026년 11월', { x: 0.7, y: 6.75, w: 12, h: 0.35, fontSize: 14, color: C.accent6, objectName: '인적사항' });
-  s.addNotes('데이터센터 전력 소비는 2024년 약 415TWh에서 2030년 약 945TWh로 늘어날 전망입니다(IEA). 데이터센터는 전력, 냉각, 비상 전원 방식이 설비실과 공간을 좌우하는데, 초기 설계에서는 전문 검토가 확정되기 전이라 설계자가 경험에 기대어 가정을 세웁니다. 이후 검토 결과가 가정과 달라지면 공간 재작업이 생길 수 있습니다. 최근에는 건축 실무자도 생성형 AI로 검토 도구를 직접 만듭니다. 그런데 이 도구가 어떤 지식을 어떤 근거로 담고 있는지는 정리되지 않았습니다. 그래서 제가 직접 개발한 앱 3개를 분석틀로 분석했습니다. (약 1분)');
+  // 2단계: 왜 데이터센터인가
+  T(s, '2  왜 데이터센터인가', { x: 0.7, y: 4.95, w: 6, h: 0.4, fontSize: 16, bold: true, color: C.accent2, objectName: '2단계 라벨' });
+  s.addShape(pres.ShapeType.roundRect, { x: 0.7, y: 5.4, w: 8.2, h: 0.85, fill: { color: C.accent5 }, rectRadius: 0.1, objectName: '이유 상자' });
+  T(s, '전력·냉각·비상 전원이 설비실 규모를 결정하고 조건이 수치로 표현되는 시설', { x: 0.9, y: 5.4, w: 7.8, h: 0.85, fontSize: 16, color: C.background1, valign: 'middle', objectName: '이유 문장' });
+  // 통계 카드 (수요 근거)
+  s.addShape(pres.ShapeType.roundRect, { x: 9.3, y: 4.95, w: 3.4, h: 1.65, fill: { color: C.accent5 }, rectRadius: 0.12, objectName: '통계 카드' });
+  T(s, '415 → 945 TWh', { x: 9.3, y: 5.0, w: 3.4, h: 0.7, fontSize: 28, bold: true, color: C.accent2, align: 'center', valign: 'middle', objectName: '통계 수치' });
+  T(s, '데이터센터 전력 소비 2024→2030년 전망', { x: 9.4, y: 5.7, w: 3.2, h: 0.5, fontSize: 12, color: C.background1, align: 'center', valign: 'top', objectName: '통계 설명' });
+  T(s, '자료: IEA(2025), Energy and AI', { x: 9.4, y: 6.2, w: 3.2, h: 0.3, fontSize: 10, color: C.accent6, align: 'center', objectName: '통계 출처' });
+  T(s, '목적: AI로 만든 검토 앱의 지식 명시화·검증·공유 방식을 분석하고 개선 방향 제시', { x: 0.7, y: 6.4, w: 8.4, h: 0.45, fontSize: 15, bold: true, color: C.background1, objectName: '연구 목적' });
+  T(s, '공학대학원 건축학전공  |  임상철 (2026160492)  |  담당교수 김영주  |  2026년 11월', { x: 0.7, y: 6.95, w: 12, h: 0.3, fontSize: 12, color: C.accent6, objectName: '인적사항' });
+  s.addNotes('초기 계획설계에서는 구조, 기계, 전기 같은 건축 외 분야의 검토가 확정되기 전에 설계자가 기술 조건을 가정합니다. 이 가정이 나중에 전문 검토 결과와 달라지면 공간계획이 바뀌고 재작업이 생깁니다. 그래서 설계자의 지식 확장이 필요합니다. 이 문제는 설비가 공간을 좌우하는 시설에서 특히 두드러지는데, 데이터센터는 전력, 냉각, 비상 전원 방식이 설비실 규모를 직접 결정하고 조건이 수치로 표현됩니다. 수요도 2024년 약 415TWh에서 2030년 약 945TWh로 늘 전망입니다. 최근에는 실무자도 생성형 AI로 검토 도구를 직접 만듭니다. 이 도구가 어떤 지식을 어떤 근거로 담는지 정리되지 않았기 때문에, 제가 개발한 앱 3개를 분석틀로 분석했습니다. (약 1분)');
 }
 
 // ================= Slide 2: 선행연구 공백 =================
