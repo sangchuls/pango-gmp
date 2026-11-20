@@ -38,7 +38,7 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   T(s, '바이브 코딩으로 개발한 데이터센터 검토 앱 3개 사례를 중심으로', { x: 0.7, y: 2.2, w: 8.5, h: 0.5, fontSize: 18, color: C.accent6, objectName: '부제' });
   // 1단계: 일반 문제
   T(s, '1  초기 계획설계의 문제', { x: 0.7, y: 3.0, w: 6, h: 0.4, fontSize: 16, bold: true, color: C.accent2, objectName: '1단계 라벨' });
-  const bx = [['건축 외 분야 조건', '전문 검토 전에 설계자가 가정'], ['전문 검토 결과', '가정과 달라질 수 있음'], ['공간계획 변경', '재작업 발생 → 지식 확장 필요']];
+  const bx = [['협업·지원이 어려움', '건축가가 경험으로 직접 판단'], ['전문 검토 결과', '직접 판단과 달라질 수 있음'], ['공간계획 변경', '재작업 발생 → 지식 확장 필요']];
   bx.forEach((b, i) => {
     const x = 0.7 + i * 4.15;
     s.addShape(pres.ShapeType.roundRect, { x, y: 3.45, w: 3.5, h: 1.25, fill: { color: C.accent5 }, rectRadius: 0.1, objectName: `문제 상자 ${i + 1}` });
@@ -49,7 +49,7 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   // 2단계: 왜 데이터센터인가
   T(s, '2  왜 데이터센터인가', { x: 0.7, y: 4.95, w: 6, h: 0.4, fontSize: 16, bold: true, color: C.accent2, objectName: '2단계 라벨' });
   s.addShape(pres.ShapeType.roundRect, { x: 0.7, y: 5.4, w: 8.2, h: 0.85, fill: { color: C.accent5 }, rectRadius: 0.1, objectName: '이유 상자' });
-  T(s, '전력·냉각·비상 전원이 설비실 규모를 결정하고 조건이 수치로 표현되는 시설', { x: 0.9, y: 5.4, w: 7.8, h: 0.85, fontSize: 16, color: C.background1, valign: 'middle', objectName: '이유 문장' });
+  T(s, '설비·전기 시설이 공간을 좌우하는 대표 시설: 조건이 수치로 표현됨', { x: 0.9, y: 5.4, w: 7.8, h: 0.85, fontSize: 16, color: C.background1, valign: 'middle', objectName: '이유 문장' });
   // 통계 카드 (수요 근거)
   s.addShape(pres.ShapeType.roundRect, { x: 9.3, y: 4.95, w: 3.4, h: 1.65, fill: { color: C.accent5 }, rectRadius: 0.12, objectName: '통계 카드' });
   T(s, '415 → 945 TWh', { x: 9.3, y: 5.0, w: 3.4, h: 0.7, fontSize: 28, bold: true, color: C.accent2, align: 'center', valign: 'middle', objectName: '통계 수치' });
@@ -57,7 +57,7 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   T(s, '자료: IEA(2025), Energy and AI', { x: 9.4, y: 6.2, w: 3.2, h: 0.3, fontSize: 10, color: C.accent6, align: 'center', objectName: '통계 출처' });
   T(s, '목적: AI로 만든 검토 앱의 지식 명시화·검증·공유 방식을 분석하고 개선 방향 제시', { x: 0.7, y: 6.4, w: 8.4, h: 0.45, fontSize: 15, bold: true, color: C.background1, objectName: '연구 목적' });
   T(s, '공학대학원 건축학전공  |  임상철 (2026160492)  |  담당교수 김영주  |  2026년 11월', { x: 0.7, y: 6.95, w: 12, h: 0.3, fontSize: 12, color: C.accent6, objectName: '인적사항' });
-  s.addNotes('초기 계획설계에서는 구조, 기계, 전기 같은 건축 외 분야의 검토가 확정되기 전에 설계자가 기술 조건을 가정합니다. 이 가정이 나중에 전문 검토 결과와 달라지면 공간계획이 바뀌고 재작업이 생깁니다. 그래서 설계자의 지식 확장이 필요합니다. 이 문제는 설비가 공간을 좌우하는 시설에서 특히 두드러지는데, 데이터센터는 전력, 냉각, 비상 전원 방식이 설비실 규모를 직접 결정하고 조건이 수치로 표현됩니다. 수요도 2024년 약 415TWh에서 2030년 약 945TWh로 늘 전망입니다. 최근에는 실무자도 생성형 AI로 검토 도구를 직접 만듭니다. 이 도구가 어떤 지식을 어떤 근거로 담는지 정리되지 않았기 때문에, 제가 개발한 앱 3개를 분석틀로 분석했습니다. (약 1분)');
+  s.addNotes('초기 계획설계에서는 구조, 기계, 전기 같은 건축 외 분야의 협업과 지원을 받기 어려워, 건축가가 경험으로 직접 판단해야 하는 것이 현실입니다. 이 판단이 나중에 전문 검토 결과와 달라지면 공간계획이 바뀌고 재작업이 생깁니다. 그래서 설계자의 지식 확장이 필요합니다. 특히 설비·전기 시설이 공간을 좌우하는 시설의 초기 설계에서 두드러지는데, 데이터센터가 그 대표적인 시설입니다. 전력, 냉각, 비상 전원 방식이 설비실 규모를 직접 결정하고 조건이 수치로 표현됩니다. 수요도 2024년 약 415TWh에서 2030년 약 945TWh로 늘 전망입니다. 최근에는 실무자도 생성형 AI로 검토 도구를 직접 만듭니다. 이 도구가 어떤 지식을 어떤 근거로 담는지 정리되지 않았기 때문에, 제가 개발한 앱 3개를 분석틀로 분석했습니다. (약 1분)');
 }
 
 // ================= Slide 2: 선행연구 공백 =================
@@ -134,8 +134,8 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   });
   s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 5.75, w: 12.1, h: 1.2, fill: { color: C.text1 }, rectRadius: 0.1, objectName: '제언 상자' });
   T(s, [{ text: '제언  ', options: { bold: true, color: C.accent2 } }, { text: '지식 원본 단일화 · 근거 수준 표기 · 기준 사례 시험 · 공통 포털과 의견 이력', options: { color: C.background1 } }], { x: 0.9, y: 5.85, w: 11.5, h: 0.5, fontSize: 17, valign: 'middle', objectName: '제언 문장' });
-  T(s, [{ text: '후속 연구  ', options: { bold: true, color: C.accent2 } }, { text: '온톨로지·AI 에이전트 검토의견서, 타 용도 시설로 분석틀 확장', options: { color: C.background1 } }], { x: 0.9, y: 6.4, w: 11.5, h: 0.45, fontSize: 17, valign: 'middle', objectName: '후속 연구 문장' });
-  s.addNotes('결과입니다. 세 사례 모두 산식을 화면에 드러내고 결과를 도면으로 연결하며 스스로 경고합니다. 하지만 기준 사례 시험은 세 사례 모두 저장소에 없었고, 근거·가정 표시는 사례마다 달랐으며, 같은 냉각 산식이 두 앱에 중복 구현되어 있었습니다. 그래서 지식 원본의 단일화, 근거 수준 표기, 기준 사례 시험, 공통 포털과 의견 이력 관리를 제언합니다. 후속 연구로는 온톨로지와 AI 에이전트가 계산 도구의 결과를 통합해 검토의견서를 작성하는 프레임워크를 제안합니다. 또한 분석틀은 시설 유형에 종속되지 않아 병원이나 연구시설 같은 다른 용도로 확장해 검증할 수 있습니다. 다만 이번 연구는 데이터센터에 한정됩니다. (약 1분)');
+  T(s, [{ text: '후속 연구  ', options: { bold: true, color: C.accent2 } }, { text: '앱 통합 → 온톨로지 프레임워크·테스트 앱, 타 용도 확장', options: { color: C.background1 } }], { x: 0.9, y: 6.4, w: 11.5, h: 0.45, fontSize: 17, valign: 'middle', objectName: '후속 연구 문장' });
+  s.addNotes('결과입니다. 세 사례 모두 산식을 화면에 드러내고 결과를 도면으로 연결하며 스스로 경고합니다. 하지만 기준 사례 시험은 세 사례 모두 저장소에 없었고, 근거·가정 표시는 사례마다 달랐으며, 같은 냉각 산식이 두 앱에 중복 구현되어 있었습니다. 그래서 지식 원본의 단일화, 근거 수준 표기, 기준 사례 시험, 공통 포털과 의견 이력 관리를 제언합니다. 후속 연구로는 온톨로지와 AI 에이전트가 계산 도구의 결과를 통합해 검토의견서를 작성하는 프레임워크를 제안합니다. 후속 연구로는 이런 도메인 앱을 통합해 지식을 온톨로지로 구조화하는 프레임워크와 테스트 앱을 제안합니다. 분석틀은 시설 유형에 종속되지 않아 병원이나 연구시설 같은 다른 용도로 확장해 검증할 수 있습니다. 다만 이번 연구는 데이터센터에 한정됩니다. (약 1분)');
 }
 
 (async () => {
