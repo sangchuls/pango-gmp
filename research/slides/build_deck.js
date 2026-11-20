@@ -103,9 +103,15 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
     });
     if (i < 3) s.addShape(pres.ShapeType.rightArrow, { x: x + W + 0.08, y: 3.35, w: G - 0.16, h: 0.4, fill: { color: C.accent4 }, objectName: `화살표 ${i + 1}` });
   });
-  T(s, [{ text: '방법  ', options: { bold: true, color: C.accent1 } }, { text: '문헌 조사 → 분석틀 설정 → 사례분석(소스코드·커밋·실행 화면·독립 계산 대조) → 제언', options: { color: C.text1 } }], { x: 0.6, y: 5.95, w: 12.1, h: 0.5, fontSize: 16, valign: 'middle', objectName: '방법 요약' });
-  T(s, '판정: ● 충족  ◐ 부분 충족  ○ 미흡', { x: 0.6, y: 6.5, w: 12.1, h: 0.35, fontSize: 14, color: C.accent4, objectName: '판정 기준' });
-  s.addNotes('방법은 문헌 조사와 사례분석입니다. 지식 창조 이론, 설계 지식 구조화 연구, 설계과학연구 방법론에서 네 가지 관점, 열두 개 세부 요소의 분석틀을 도출했습니다. 지식 명시화, 도구 구현, 검증, 공유·개선입니다. 이 틀로 제가 개발한 전력 이중화, 데이터홀 단면, 발전기실 급·배기 앱 세 개를 소스코드, 커밋 이력, 실행 화면, 독립 계산 대조로 분석해 충족, 부분 충족, 미흡으로 판정했습니다. 이 앱들은 제가 실무 검토에 이미 활용하고 웹으로 배포하며, 바이브 코딩으로 만든 앱을 저장소와 배포로 잇는 파이프라인으로 사용자 피드백을 받아 개선하고 있습니다. (약 1분)');
+  const rm = [['① 앱 개발 과정·원리 분석', '본 과제', true], ['② 앱 통합', '계획', false], ['③ 온톨로지화·AI 에이전트', '계획', false]];
+  rm.forEach((r, i) => {
+    const x = 0.6 + i * 4.2;
+    s.addShape(pres.ShapeType.roundRect, { x, y: 5.85, w: 3.7, h: 0.62, fill: { color: r[2] ? C.accent1 : C.accent4 }, rectRadius: 0.08, objectName: `로드맵 ${i + 1}` });
+    T(s, [{ text: r[0], options: { bold: true } }, { text: '  (' + r[1] + ')', options: {} }], { x: x + 0.1, y: 5.85, w: 3.5, h: 0.62, fontSize: 14, color: C.background1, valign: 'middle', align: 'center', objectName: `로드맵 문구 ${i + 1}` });
+    if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 3.75, y: 6.0, w: 0.4, h: 0.32, fill: { color: C.text1 }, objectName: `로드맵 화살표 ${i + 1}` });
+  });
+  T(s, '판정: ● 충족  ◐ 부분 충족  ○ 미흡', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 14, color: C.accent4, objectName: '판정 기준' });
+  s.addNotes('연구는 앱 개발 과정과 원리의 분석, 앱 통합, 온톨로지화의 세 단계이고, 이번 과제는 첫 단계입니다. 방법은 문헌 조사와 사례분석입니다. 지식 창조 이론, 설계 지식 구조화 연구, 설계과학연구 방법론에서 네 가지 관점, 열두 개 세부 요소의 분석틀을 도출했습니다. 지식 명시화, 도구 구현, 검증, 공유·개선입니다. 이 틀로 제가 개발한 전력 이중화, 데이터홀 단면, 발전기실 급·배기 앱 세 개를 소스코드, 커밋 이력, 실행 화면, 독립 계산 대조로 분석해 충족, 부분 충족, 미흡으로 판정했습니다. 이 앱들은 제가 실무 검토에 이미 활용하고 웹으로 배포하며, 바이브 코딩으로 만든 앱을 저장소와 배포로 잇는 파이프라인으로 사용자 피드백을 받아 개선하고 있습니다. (약 1분)');
 }
 
 // ================= Slide 4: 결과와 제언 =================
