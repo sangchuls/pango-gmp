@@ -130,8 +130,8 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   });
   s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 5.75, w: 12.1, h: 1.2, fill: { color: C.text1 }, rectRadius: 0.1, objectName: '제언 상자' });
   T(s, [{ text: '제언  ', options: { bold: true, color: C.accent2 } }, { text: '지식 원본 단일화 · 근거 수준 표기 · 기준 사례 시험 · 공통 포털과 의견 이력', options: { color: C.background1 } }], { x: 0.9, y: 5.85, w: 11.5, h: 0.5, fontSize: 17, valign: 'middle', objectName: '제언 문장' });
-  T(s, [{ text: '후속 연구  ', options: { bold: true, color: C.accent2 } }, { text: '온톨로지 + AI 에이전트가 계산 도구 결과를 통합해 검토의견서 작성', options: { color: C.background1 } }], { x: 0.9, y: 6.4, w: 11.5, h: 0.45, fontSize: 17, valign: 'middle', objectName: '후속 연구 문장' });
-  s.addNotes('결과입니다. 세 사례 모두 산식을 화면에 드러내고 결과를 도면으로 연결하며 스스로 경고합니다. 하지만 기준 사례 시험은 세 사례 모두 저장소에 없었고, 근거·가정 표시는 사례마다 달랐으며, 같은 냉각 산식이 두 앱에 중복 구현되어 있었습니다. 그래서 지식 원본의 단일화, 근거 수준 표기, 기준 사례 시험, 공통 포털과 의견 이력 관리를 제언합니다. 후속 연구로는 온톨로지와 AI 에이전트가 계산 도구의 결과를 통합해 검토의견서를 작성하는 프레임워크를 제안합니다. (약 1분)');
+  T(s, [{ text: '후속 연구  ', options: { bold: true, color: C.accent2 } }, { text: '온톨로지·AI 에이전트 검토의견서, 타 용도 시설로 분석틀 확장', options: { color: C.background1 } }], { x: 0.9, y: 6.4, w: 11.5, h: 0.45, fontSize: 17, valign: 'middle', objectName: '후속 연구 문장' });
+  s.addNotes('결과입니다. 세 사례 모두 산식을 화면에 드러내고 결과를 도면으로 연결하며 스스로 경고합니다. 하지만 기준 사례 시험은 세 사례 모두 저장소에 없었고, 근거·가정 표시는 사례마다 달랐으며, 같은 냉각 산식이 두 앱에 중복 구현되어 있었습니다. 그래서 지식 원본의 단일화, 근거 수준 표기, 기준 사례 시험, 공통 포털과 의견 이력 관리를 제언합니다. 후속 연구로는 온톨로지와 AI 에이전트가 계산 도구의 결과를 통합해 검토의견서를 작성하는 프레임워크를 제안합니다. 또한 분석틀은 시설 유형에 종속되지 않아 병원이나 연구시설 같은 다른 용도로 확장해 검증할 수 있습니다. 다만 이번 연구는 데이터센터에 한정됩니다. (약 1분)');
 }
 
 (async () => {
