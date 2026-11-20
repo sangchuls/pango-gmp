@@ -107,9 +107,7 @@ def set_par(p, text):
 set_par(d.paragraphs[1], '데이터센터 초기 계획설계 검토용 Micro-App의\n지식 도구화 특성 분석')
 set_par(d.paragraphs[2], '— 바이브 코딩으로 개발한 검토 앱 3개 사례를 중심으로 —')
 cov = d.paragraphs[3]
-set_par(cov, '공학대학원 건축학전공  임상철 (학번 ')
-r = cov.add_run('○○○○○○○○○○'); r.font.color.rgb = RGBColor(0xFF, 0, 0); r.bold = True
-cov.add_run(')  |  담당교수 김영주  |  2026년 11월')
+set_par(cov, '공학대학원 건축학전공  임상철 (학번 2026160492)  |  담당교수 김영주  |  2026년 11월')
 for sec in d.sections:
     for fp in sec.footer.paragraphs:
         for r in fp.runs: r.text = r.text.replace('연구계획서', '과제 보고서')
