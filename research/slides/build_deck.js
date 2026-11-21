@@ -110,12 +110,12 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
     T(s, [{ text: r[0], options: { bold: true } }, { text: '  (' + r[1] + ')', options: {} }], { x: x + 0.1, y: 5.85, w: 3.5, h: 0.62, fontSize: 14, color: C.background1, valign: 'middle', align: 'center', objectName: `로드맵 문구 ${i + 1}` });
     if (i < 2) s.addShape(pres.ShapeType.rightArrow, { x: x + 3.75, y: 6.0, w: 0.4, h: 0.32, fill: { color: C.text1 }, objectName: `로드맵 화살표 ${i + 1}` });
   });
+  const lk = (t, u) => ({ text: t, options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: u } } });
   T(s, [
-    { text: '앱 접속  A ', options: { color: C.accent4 } },
-    { text: 'power-redundancy-calculator.vercel.app', options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: 'https://power-redundancy-calculator.vercel.app/' } } },
-    { text: '   |   C ', options: { color: C.accent4 } },
-    { text: 'generator-calc.vercel.app', options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: 'https://generator-calc.vercel.app/' } } },
-  ], { x: 4.2, y: 6.6, w: 8.5, h: 0.3, fontSize: 12, align: 'right', objectName: '앱 링크' });
+    { text: '앱 접속  A ', options: { color: C.accent4 } }, lk('power-redundancy-calculator.vercel.app', 'https://power-redundancy-calculator.vercel.app/'),
+    { text: '  B ', options: { color: C.accent4 } }, lk('datahall-section-check.vercel.app', 'https://datahall-section-check.vercel.app/'),
+    { text: '  C ', options: { color: C.accent4 } }, lk('generator-calc.vercel.app', 'https://generator-calc.vercel.app/'),
+  ], { x: 3.3, y: 6.6, w: 9.4, h: 0.3, fontSize: 11, align: 'right', objectName: '앱 링크' });
   T(s, '판정: ● 충족  ◐ 부분 충족  ○ 미흡', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 14, color: C.accent4, objectName: '판정 기준' });
   s.addNotes('연구는 앱 개발 과정과 원리의 분석, 앱 통합, 온톨로지화의 세 단계이고, 이번 과제는 첫 단계입니다. 방법은 문헌 조사와 사례분석입니다. 지식 창조 이론, 설계 지식 구조화 연구, 설계과학연구 방법론에서 네 가지 관점, 열두 개 세부 요소의 분석틀을 도출했습니다. 지식 명시화, 도구 구현, 검증, 공유·개선입니다. 이 틀로 제가 개발한 전력 이중화, 데이터홀 단면, 발전기실 급·배기 앱 세 개를 소스코드, 커밋 이력, 실행 화면, 독립 계산 대조로 분석해 충족, 부분 충족, 미흡으로 판정했습니다. 이 앱들의 로직은 평소 협력사와 협의하고 문의하며 메모한 파편화된 전문 지식을 통합하고 전문가의 검토 원리를 분석해서 만들었습니다. 지금은 실무 검토에 활용하고 웹으로 배포하며, 바이브 코딩으로 만든 앱을 저장소와 배포로 잇는 파이프라인으로 사용자 피드백을 받아 개선하고 있습니다. (약 1분)');
 }
