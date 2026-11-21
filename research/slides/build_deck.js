@@ -113,9 +113,9 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   T(s, [
     { text: '앱 접속  A ', options: { color: C.accent4 } },
     { text: 'power-redundancy-calculator.vercel.app', options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: 'https://power-redundancy-calculator.vercel.app/' } } },
-    { text: '   |   소스  ', options: { color: C.accent4 } },
-    { text: 'github.com/sangchuls', options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: 'https://github.com/sangchuls' } } },
-  ], { x: 5.2, y: 6.6, w: 7.5, h: 0.3, fontSize: 12, align: 'right', objectName: '앱 링크' });
+    { text: '   |   C ', options: { color: C.accent4 } },
+    { text: 'generator-calc.vercel.app', options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: 'https://generator-calc.vercel.app/' } } },
+  ], { x: 4.2, y: 6.6, w: 8.5, h: 0.3, fontSize: 12, align: 'right', objectName: '앱 링크' });
   T(s, '판정: ● 충족  ◐ 부분 충족  ○ 미흡', { x: 0.6, y: 6.6, w: 12.1, h: 0.35, fontSize: 14, color: C.accent4, objectName: '판정 기준' });
   s.addNotes('연구는 앱 개발 과정과 원리의 분석, 앱 통합, 온톨로지화의 세 단계이고, 이번 과제는 첫 단계입니다. 방법은 문헌 조사와 사례분석입니다. 지식 창조 이론, 설계 지식 구조화 연구, 설계과학연구 방법론에서 네 가지 관점, 열두 개 세부 요소의 분석틀을 도출했습니다. 지식 명시화, 도구 구현, 검증, 공유·개선입니다. 이 틀로 제가 개발한 전력 이중화, 데이터홀 단면, 발전기실 급·배기 앱 세 개를 소스코드, 커밋 이력, 실행 화면, 독립 계산 대조로 분석해 충족, 부분 충족, 미흡으로 판정했습니다. 이 앱들의 로직은 평소 협력사와 협의하고 문의하며 메모한 파편화된 전문 지식을 통합하고 전문가의 검토 원리를 분석해서 만들었습니다. 지금은 실무 검토에 활용하고 웹으로 배포하며, 바이브 코딩으로 만든 앱을 저장소와 배포로 잇는 파이프라인으로 사용자 피드백을 받아 개선하고 있습니다. (약 1분)');
 }
@@ -125,8 +125,8 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
   const s = pres.addSlide({ masterName: 'CONTENT' });
   s.addText('분석 결과와 제언', { placeholder: 'title' });
   s.addChart(pres.charts.BAR, [
-    { name: '충족', labels: ['사례 A', '사례 B', '사례 C'], values: [7, 6, 7] },
-    { name: '부분 충족', labels: ['사례 A', '사례 B', '사례 C'], values: [4, 4, 3] },
+    { name: '충족', labels: ['사례 A', '사례 B', '사례 C'], values: [7, 6, 8] },
+    { name: '부분 충족', labels: ['사례 A', '사례 B', '사례 C'], values: [4, 4, 2] },
     { name: '미흡', labels: ['사례 A', '사례 B', '사례 C'], values: [0, 1, 1] },
   ], {
     x: 0.6, y: 1.4, w: 5.6, h: 4.1, barDir: 'bar', barGrouping: 'stacked', chartColors: ['0F766E', 'F2A93B', 'B23A48'],

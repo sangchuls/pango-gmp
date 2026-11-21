@@ -243,7 +243,7 @@ tcap('<표 3-4> 사례 앱의 접속 주소')
 table(['사례', '앱', '배포 주소', '소스 저장소'], [
     ['A', 'Power Redundancy Calculator', 'https://power-redundancy-calculator.vercel.app/ power-redundancy-calculator.vercel.app', 'https://github.com/sangchuls/power_redundancy_calculator github.com/sangchuls/power_redundancy_calculator'],
     ['B', 'Datahall Review Program', '«배포 주소 입력»', 'https://github.com/sangchuls/datahall-section-check github.com/sangchuls/datahall-section-check'],
-    ['C', '발전기실 급·배기 개구율 계산기', '«배포 주소 입력»', 'https://github.com/sangchuls/generator-calc github.com/sangchuls/generator-calc'],
+    ['C', '발전기실 급·배기 개구율 계산기', 'https://generator-calc.vercel.app/ generator-calc.vercel.app', 'https://github.com/sangchuls/generator-calc github.com/sangchuls/generator-calc'],
 ], widths=[700, 2300, 3200, 3200], src='저자 개발 앱, 2026.11 기준')
 linkify_last_table()
 H2('3.4 분석 대상 앱의 개발 과정과 원리')
@@ -280,7 +280,7 @@ H2('4.3 사례 C: 발전기실 급·배기 계산 앱')
 P('지식 명시화: 제조사 4곳의 모델별 사양(출력 kW, 연소·냉각 풍량, 카탈로그 개구면적)을 데이터로 정리하여, 모델을 고르면 값이 자동으로 입력된다. 입력은 ㎡, m³/min, m/s 단위로 받고, 화면에 카탈로그 출처 쪽수와 산식 메모를 표시하여 근거 표시가 세 사례 중 가장 명확하다.')
 P('도구 구현: React 기반 웹앱으로, 계산 함수를 한 파일에 두고 화면과 서버리스 API가 같은 함수를 호출한다. 결과는 급기·배기 계통을 따라 외기 그릴, 소음기, 댐퍼별 개구면적을 배치한 다이어그램으로 표현된다(그림 4-3).')
 P('검증: 설명서에는 적용 기준(급기 7m/s, 배기 8m/s, 개구율, 여유율 1.2)만 있고 산식(1대당 gross 면적 = 풍량 × 여유율 ÷ (설계풍속 × 개구율))은 코드에 있다. 저장소에 시험 코드는 없으나, Cummins 3,000kW 모델에 대해 연구자가 계산한 급기 그릴 8.64㎡, 풍량 역산 급기 7.17㎡·배기 5.73㎡, 8대 합계 급기 69.12㎡·배기 54.72㎡가 화면 값과 일치하였다. 앱은 카탈로그 개구면적(7.20㎡)과 풍량에서 역산한 값(7.17㎡)을 나란히 보여 주어 입력 자료의 일관성을 스스로 점검하고, 허용풍속 초과를 경고한다.')
-P('공유·개선: 정적 호스팅과 API 호출을 모두 지원하지만 의견 수집 기능은 없다. 계산 함수가 한 파일에 있어 화면과 API가 같은 지식 원본을 쓰므로, 세 사례 중 지식 원본 관리가 가장 명확하다.')
+P('공유·개선: 공개 주소(generator-calc.vercel.app)로 배포되어 있고 배포본은 저장소 소스와 동일하며, 서버리스 API(/api/compute)도 동작한다. 배포된 API에 위의 Cummins 3,000kW 조건을 입력한 결과 급기 69.12㎡, 배기 54.72㎡로 앞의 계산값과 일치하였다. 다만 의견 수집 기능은 없다. 계산 함수가 한 파일에 있어 화면과 API가 같은 지식 원본을 쓰므로, 세 사례 중 지식 원본 관리가 가장 명확하다.')
 images([(FIG + 'fig_caseC_crop.png', '')], cols=1, width=14.5)
 figcap('그림 4-3  사례 C의 주요 화면: 모델 선택, 카탈로그값과 역산값, 급·배기 계통 다이어그램', '저자 개발 앱 저장소(github.com/sangchuls/generator-calc) 실행 화면 캡처, 2026.11.20')
 
@@ -292,7 +292,7 @@ J = [  # (관점, 요소, A, B, C)
     ('', '③ 산식·규칙', '●', '●', '●'), ('', '④ 근거·가정 표시', '◐', '○', '●'),
     ('도구 구현', '⑤ 구현 형태', '정적 웹앱', '정적 웹앱 + 선택형 서버', '웹앱 + API'), ('', '⑥ 출력·공간 표현', '●', '●', '●'),
     ('검증', '⑦ 문서-코드 일치', '●', '◐', '◐'), ('', '⑧ 기준 사례 시험', '◐', '◐', '◐'), ('', '⑨ 자체 점검', '●', '●', '●'),
-    ('공유·개선', '⑩ 배포·접근', '●', '◐', '◐'), ('', '⑪ 의견 수집·처리', '◐', '●', '○'), ('', '⑫ 지식 원본 관리', '◐', '◐', '●'),
+    ('공유·개선', '⑩ 배포·접근', '●', '◐', '●'), ('', '⑪ 의견 수집·처리', '◐', '●', '○'), ('', '⑫ 지식 원본 관리', '◐', '◐', '●'),
 ]
 cnt = {k: tuple(sum(1 for row in J if row[2 + i] == k) for i in range(3)) for k in '●◐○'}
 FREQ = [('판정 빈도', f'● 충족 (11개 중)', *map(str, cnt['●'])), ('', '◐ 부분 충족', *map(str, cnt['◐'])), ('', '○ 미흡', *map(str, cnt['○']))]
