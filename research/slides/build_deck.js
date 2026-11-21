@@ -73,12 +73,13 @@ const T = (s, text, o) => s.addText(text, Object.assign({ isTextBox: true, margi
     [cell('이용주(2020)', { bold: true }), cell('전문가 시스템 기반 친환경 설계지원'), cell('친환경 분야에 한정')],
     [cell('Chen 외(2024)', { bold: true }), cell('LLM·온톨로지 기반 BIM 규정 검토'), cell('규정 해석 중심')],
     [cell('Dong 외(2025)', { bold: true }), cell('LLM 다중 에이전트의 BIM 설계 조정'), cell('설비·공간 통합 판단 미포함')],
+    [cell('Cai & Gou(2026)', { bold: true }), cell('데이터센터 냉각 전략(패시브·액티브) 종합 리뷰'), cell('냉각 효율 중심, 전력 미포함')],
     [cell('본 연구', { bold: true, color: '0F766E', fill: { color: 'E1F3EF' } }), cell('실무자가 AI로 만든 검토 앱의 지식 명시화·검증·공유 분석', { bold: true, fill: { color: 'E1F3EF' } }), cell('저자 개발 앱 3개로 한정', { fill: { color: 'E1F3EF' } })],
   ];
-  s.addTable(rows, { x: 0.6, y: 1.45, w: 12.1, colW: [2.7, 6.0, 3.4], rowH: 0.6, border: { type: 'solid', pt: 0.75, color: 'CBD5E1' }, margin: [0, 0.12, 0, 0.12], objectName: '선행연구 비교표' });
+  s.addTable(rows, { x: 0.6, y: 1.45, w: 12.1, colW: [2.7, 6.0, 3.4], rowH: 0.52, border: { type: 'solid', pt: 0.75, color: 'CBD5E1' }, margin: [0, 0.12, 0, 0.12], objectName: '선행연구 비교표' });
   s.addShape(pres.ShapeType.roundRect, { x: 0.6, y: 5.85, w: 12.1, h: 0.95, fill: { color: C.background2 }, rectRadius: 0.1, objectName: '공백 상자' });
   T(s, [{ text: '연구 공백  ', options: { bold: true, color: C.accent1 } }, { text: '건축 실무자가 생성형 AI로 직접 만든 전문 분야 도구의 지식을 명시화·검증·공유 관점에서 분석한 연구는 검토한 범위에서 확인되지 않음', options: { color: C.text1 } }], { x: 0.85, y: 5.9, w: 11.6, h: 0.85, fontSize: 16, valign: 'middle', objectName: '공백 문장' });
-  s.addNotes('선행연구는 설계 지식의 구조화, AI의 대안 생성, 전문가 시스템, LLM과 온톨로지를 활용한 규정 검토, 다중 에이전트의 BIM 조정까지 가능성을 보였습니다. 다만 대상이 건축 내부 지식이나 친환경 같은 특정 분야, 규정 해석, BIM 조작에 한정되어 있습니다. 건축 실무자가 생성형 AI로 직접 만든 전문 분야 도구의 지식을 명시화, 검증, 공유 관점에서 분석한 연구는 제가 검토한 범위에서는 확인되지 않았습니다. 이것이 본 연구의 공백입니다. (약 1분)');
+  s.addNotes('선행연구는 설계 지식의 구조화, AI의 대안 생성, 전문가 시스템, LLM과 온톨로지를 활용한 규정 검토, 다중 에이전트의 BIM 조정, 데이터센터 냉각 전략의 종합 정리까지 가능성을 보였습니다. 다만 대상이 건축 내부 지식이나 친환경 같은 특정 분야, 규정 해석, BIM 조작에 한정되어 있습니다. 건축 실무자가 생성형 AI로 직접 만든 전문 분야 도구의 지식을 명시화, 검증, 공유 관점에서 분석한 연구는 제가 검토한 범위에서는 확인되지 않았습니다. 이것이 본 연구의 공백입니다. (약 1분)');
 }
 
 // ================= Slide 3: 연구 모형 =================
