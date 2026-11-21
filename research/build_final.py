@@ -99,6 +99,28 @@ def PRED(parts):
         r = p.add_run(text)
         if red: r.font.color.rgb = RGBColor(0xFF, 0, 0); r.bold = True
     return p
+from docx.opc.constants import RELATIONSHIP_TYPE as _RT
+def add_hyperlink(paragraph, url, text):
+    r_id = paragraph.part.relate_to(url, _RT.HYPERLINK, is_external=True)
+    h = OxmlElement('w:hyperlink'); h.set(qn('r:id'), r_id)
+    r = OxmlElement('w:r'); rPr = OxmlElement('w:rPr')
+    c = OxmlElement('w:color'); c.set(qn('w:val'), '0563C1'); rPr.append(c)
+    u = OxmlElement('w:u'); u.set(qn('w:val'), 'single'); rPr.append(u)
+    r.append(rPr); t = OxmlElement('w:t'); t.text = text; t.set(qn('xml:space'), 'preserve'); r.append(t)
+    h.append(r); paragraph._p.append(h)
+def linkify_last_table():
+    tb = d.tables[-1]
+    for row in tb.rows[1:]:
+        for cell in row.cells:
+            for para in cell.paragraphs:
+                txt = para.text.strip()
+                if txt.startswith('http'):
+                    url, _, shown = txt.partition(' ')
+                    for r in list(para.runs): r._r.getparent().remove(r._r)
+                    add_hyperlink(para, url, shown or url)
+                elif txt.startswith('\u00ab'):
+                    for r in list(para.runs): r._r.getparent().remove(r._r)
+                    rr = para.add_run(txt); rr.font.color.rgb = RGBColor(0xFF, 0, 0); rr.bold = True
 def tcap(t):
     p = P(t, align=WD_ALIGN_PARAGRAPH.CENTER, size=9.5, bold=True); p.paragraph_format.keep_with_next = True
 def figcap(t, src):
@@ -216,6 +238,14 @@ table(['사례', '앱', '중심 검토 영역', '개발 기간(커밋)', '구현
     ['C', '발전기실 급·배기 개구율 계산기', '발전기실 급기·배기 개구면적', '2026.06~09 (5)', 'React 약 1,700줄'],
 ], widths=[700, 2300, 3000, 1700, 1700], src='각 사례의 GitHub 저장소(github.com/sangchuls) 커밋 이력과 소스코드, 2026.11 기준')
 
+P('세 앱은 표 3-4의 주소에서 직접 접속하거나 소스를 확인할 수 있다.')
+tcap('<표 3-4> 사례 앱의 접속 주소')
+table(['사례', '앱', '배포 주소', '소스 저장소'], [
+    ['A', 'Power Redundancy Calculator', 'https://power-redundancy-calculator.vercel.app/ power-redundancy-calculator.vercel.app', 'https://github.com/sangchuls/power_redundancy_calculator github.com/sangchuls/power_redundancy_calculator'],
+    ['B', 'Datahall Review Program', '«배포 주소 입력»', 'https://github.com/sangchuls/datahall-section-check github.com/sangchuls/datahall-section-check'],
+    ['C', '발전기실 급·배기 개구율 계산기', '«배포 주소 입력»', 'https://github.com/sangchuls/generator-calc github.com/sangchuls/generator-calc'],
+], widths=[700, 2300, 3200, 3200], src='저자 개발 앱, 2026.11 기준')
+linkify_last_table()
 H2('3.4 분석 대상 앱의 개발 과정과 원리')
 P('저자는 세 앱을 다음 과정으로 개발하고 운영한다. 먼저 평상시 협력사와 협의하고 문의하며 메모해 온 파편화된 전문 지식을 모으고, 전문가들이 검토하는 원리를 분석하여 입력, 규칙, 산식의 형태로 정리한다. 이를 Claude Code에 제시하여 앱의 로직으로 구현하고, 생성된 코드를 실행 화면과 결과로 확인하며 수정을 반복한 뒤, 저장소에 반영하여 웹으로 배포한다. 배포한 앱에서 사용자의 의견을 받아 다시 수정한다(그림 3-2의 1단계). 사례 A의 73개 커밋은 이 반복의 이력이다.')
 P('개발 원리는 세 가지이다. 첫째, 전문가가 검토하는 순서와 판단 기준을 입력, 결정론적 함수, 출력의 구조로 옮기고 입력 변수와 단위, 산식을 화면에 드러내어 사용자가 계산 과정을 따라갈 수 있게 한다. 둘째, 협의 과정에서 흩어져 있던 지식을 코드 안의 상수(사례 A·B)나 코드와 분리된 데이터(사례 C의 제조사 카탈로그)로 통합하되, 변수와 산식을 설명서에 기록하고 출처를 밝히는 수준은 사례마다 달랐다(4장). 셋째, 결과를 도면과 다이어그램으로 바꾸어 건축 공간의 판단과 연결한다. 생성형 AI는 코드 작성을 보조하며 계산의 타당성은 함수의 명시성과 독립 대조로 확인한다(2.2절).')
