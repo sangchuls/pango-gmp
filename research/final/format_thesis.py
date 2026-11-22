@@ -16,6 +16,10 @@ def fonts(rpr_owner, ascii_, east):
         rf=OxmlElement('w:rFonts'); rpr.insert(0,rf)
     for k in list(rf.attrib): del rf.attrib[k]
     for k,v in (('ascii',ascii_),('hAnsi',ascii_),('eastAsia',east),('cs',ascii_)): rf.set(qn('w:'+k),v)
+# ---- 그림 1-1 교체 (장 이름 가운데 정렬)
+_bl=d.element.body.xpath('.//a:blip')[0]
+_part=d.part.related_parts[_bl.get(qn('r:embed'))]
+_part._blob=open('../figures/fig_1_1_flow.png','rb').read()
 # ---- 페이지 설정 (A4)
 sec=d.sections[0]
 sec.page_width=Cm(21.0); sec.page_height=Cm(29.7)
