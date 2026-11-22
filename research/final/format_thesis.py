@@ -61,6 +61,21 @@ def shade(tc,fill):
         sh=OxmlElement('w:shd'); sh.set(qn('w:val'),'clear'); sh.set(qn('w:color'),'auto'); sh.set(qn('w:fill'),fill); tcPr.append(sh)
 for tb in d.tables:
     tblPr=tb._tbl.tblPr
+    if tb._tbl.xpath('.//w:drawing'):
+        # 그림 배치용 표: 선·음영 없음
+        for tag in ('w:tblStyle','w:tblLook','w:tblBorders'):
+            for e in tblPr.findall(qn(tag)): tblPr.remove(e)
+        bd=OxmlElement('w:tblBorders')
+        for side in ('top','left','bottom','right','insideH','insideV'):
+            e=OxmlElement('w:'+side); e.set(qn('w:val'),'nil'); bd.append(e)
+        tblPr.append(bd)
+        for row in tb.rows:
+            for c in row.cells:
+                shade(c._tc,None)
+                tcPr=c._tc.get_or_add_tcPr()
+                for e in tcPr.findall(qn('w:tcBorders')): tcPr.remove(e)
+                for pp in c.paragraphs: pp.paragraph_format.line_spacing=1.0; pp.paragraph_format.first_line_indent=None
+        continue
     for tag in ('w:tblStyle','w:tblLook'):
         for e in tblPr.findall(qn(tag)): tblPr.remove(e)
     for e in tblPr.findall(qn('w:tblBorders')): tblPr.remove(e)
