@@ -20,6 +20,28 @@ def fonts(rpr_owner, ascii_, east):
 _bl=d.element.body.xpath('.//a:blip')[0]
 _part=d.part.related_parts[_bl.get(qn('r:embed'))]
 _part._blob=open('../figures/fig_1_1_flow.png','rb').read()
+# ---- 마지막 쪽: 배포 웹앱 접속 주소 (클릭하면 연결)
+from docx.opc.constants import RELATIONSHIP_TYPE as RT
+def add_link(par,url,text):
+    rid=d.part.relate_to(url,RT.HYPERLINK,is_external=True)
+    h=OxmlElement('w:hyperlink'); h.set(qn('r:id'),rid)
+    r=OxmlElement('w:r'); rpr=OxmlElement('w:rPr')
+    rf=OxmlElement('w:rFonts'); 
+    for k in ('ascii','hAnsi','eastAsia','cs'): rf.set(qn('w:'+k),'Times New Roman' if k!='eastAsia' else '바탕')
+    rpr.append(rf)
+    c=OxmlElement('w:color'); c.set(qn('w:val'),'0563C1'); rpr.append(c)
+    sz=OxmlElement('w:sz'); sz.set(qn('w:val'),'22'); rpr.append(sz)
+    u=OxmlElement('w:u'); u.set(qn('w:val'),'single'); rpr.append(u)
+    r.append(rpr); t=OxmlElement('w:t'); t.text=text; r.append(t); h.append(r); par._p.append(h)
+tp=d.add_paragraph(); tp.alignment=WD_ALIGN_PARAGRAPH.CENTER; tp.paragraph_format.page_break_before=True; tp.paragraph_format.space_after=Pt(16)
+rr=tp.add_run('배포한 웹앱 접속 주소'); rr.font.bold=True; rr.font.size=Pt(16); fonts(rr._r.get_or_add_rPr(),'맑은 고딕','맑은 고딕')
+for lab,url in (('사례 A  전력 이중화 검토 앱 (Power Redundancy Calculator)','https://power-redundancy-calculator.vercel.app/'),('사례 B  데이터홀 단면 검토 앱 (Datahall Review Program)','https://datahall-section-check.vercel.app/'),('사례 C  발전기실 급·배기 계산 앱','https://generator-calc.vercel.app/')):
+    lp=d.add_paragraph(); lp.paragraph_format.space_before=Pt(14); lp.paragraph_format.space_after=Pt(2); lp.paragraph_format.first_line_indent=None
+    r1=lp.add_run(lab); r1.font.bold=True; r1.font.size=Pt(11)
+    up=d.add_paragraph(); up.paragraph_format.first_line_indent=None; up.paragraph_format.left_indent=Cm(0.6)
+    add_link(up,url,url)
+np_=d.add_paragraph(); np_.paragraph_format.space_before=Pt(20); np_.paragraph_format.first_line_indent=None; np_.alignment=WD_ALIGN_PARAGRAPH.LEFT
+rn=np_.add_run('※ 시범 적용 단계의 개발 중인 앱이며, 2026년 11월 기준 버전이다. 주소를 클릭하면 해당 앱으로 연결된다.'); rn.font.size=Pt(9.5)
 # ---- 페이지 설정 (A4)
 sec=d.sections[0]
 sec.page_width=Cm(21.0); sec.page_height=Cm(29.7)

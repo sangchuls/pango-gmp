@@ -222,4 +222,17 @@ caseSlide('사례 C: 발전기실 급·배기 계산 앱', '사례 C는 제조�
   T(s, '감사합니다', { x: 0.7, y: 6.55, w: 11.9, h: 0.6, fontSize: 28, bold: true, color: C.background1, align: 'right' });
   s.addNotes('정리하면, 협력업체와의 협의와 장비 사양을 로직으로 옮긴 앱은 유추와 직관에 의존하던 검토를 정량적이고 일관된 규칙으로 바꿨습니다. 앱 사이의 연결과 검토 순서는 온톨로지와 AI 에이전트가 맡는 통합 프레임워크를 제안했습니다. 앱은 시범 적용 단계이고 효과 검증은 후속 연구입니다. 감사합니다.'); }
 
+// 19 접속 주소
+{ const s = content('배포한 웹앱 접속 주소', '세 앱은 아래 주소에서 바로 접속할 수 있습니다. 시범 적용 단계의 개발 중인 앱이며 2026년 11월 버전입니다.');
+  const lk = (t, u) => ({ text: t, options: { color: '0563C1', underline: { style: 'sng' }, hyperlink: { url: u } } });
+  const ap = [['A', '전력 이중화 검토 앱', '변압기·전기실 수 → 평면', 'https://power-redundancy-calculator.vercel.app/'], ['B', '데이터홀 단면 검토 앱', '랙·냉각 장비 → 층고·건물 규모', 'https://datahall-section-check.vercel.app/'], ['C', '발전기실 급·배기 계산 앱', '급·배기 풍량 → 입면·층고', 'https://generator-calc.vercel.app/']];
+  ap.forEach((c, i) => { const y = 1.5 + i * 1.65;
+    s.addShape(pres.ShapeType.roundRect, { x: 0.6, y, w: 12.1, h: 1.4, fill: { color: C.background2 }, rectRadius: 0.1 });
+    s.addShape(pres.ShapeType.ellipse, { x: 0.9, y: y + 0.3, w: 0.8, h: 0.8, fill: { color: C.accent1 } });
+    T(s, c[0], { x: 0.9, y: y + 0.3, w: 0.8, h: 0.8, fontSize: 28, bold: true, color: C.background1, align: 'center', valign: 'middle' });
+    T(s, c[1], { x: 2.0, y: y + 0.18, w: 10.4, h: 0.5, fontSize: 22, bold: true, color: C.text1, valign: 'middle' });
+    T(s, c[2], { x: 2.0, y: y + 0.68, w: 10.4, h: 0.3, fontSize: 14, color: C.accent4 });
+    T(s, [lk(c[3], c[3])], { x: 2.0, y: y + 0.98, w: 10.4, h: 0.35, fontSize: 18 }); });
+  T(s, '※ 시범 적용 단계의 개발 중인 앱 (2026년 11월 버전)  ·  주소를 클릭하면 연결됩니다', { x: 0.6, y: 6.5, w: 12.1, h: 0.4, fontSize: 14, color: C.accent4 }); }
+
 (async () => { await pres.writeFile({ fileName: 'presentation2.pptx' }); await applyTheme('presentation2.pptx', THEME); console.log('written'); })();
