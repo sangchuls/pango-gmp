@@ -58,12 +58,14 @@ for tb in d.tables:
     tblPr=tb._tbl.tblPr
     for e in tblPr.findall(qn('w:tblBorders')): tblPr.remove(e)
     bd=OxmlElement('w:tblBorders')
-    for side in ('top','left','bottom','right','insideH','insideV'):
-        e=OxmlElement('w:'+side); e.set(qn('w:val'),'single'); e.set(qn('w:sz'),'4'); e.set(qn('w:space'),'0'); e.set(qn('w:color'),'000000'); bd.append(e)
+    for side,val,sz,col in (('top','single','8','000000'),('left','nil','0','auto'),('bottom','single','8','000000'),('right','nil','0','auto'),('insideH','single','4','595959'),('insideV','single','4','595959')):
+        e=OxmlElement('w:'+side); e.set(qn('w:val'),val); e.set(qn('w:sz'),sz); e.set(qn('w:space'),'0'); e.set(qn('w:color'),col); bd.append(e)
     tblPr.append(bd)
     for ri,row in enumerate(tb.rows):
         for c in row.cells:
-            shade(c._tc,'D9D9D9' if ri==0 else ('F2F2F2' if ri%2==0 else None))
+            shade(c._tc,'BFBFBF' if (ri==0 or ri%2==0) else None)
+            tcPr=c._tc.get_or_add_tcPr()
+            for e in tcPr.findall(qn('w:tcBorders')): tcPr.remove(e)
             for p in c.paragraphs:
                 p.paragraph_format.line_spacing=1.15; p.paragraph_format.first_line_indent=None
                 p.paragraph_format.space_before=Pt(1); p.paragraph_format.space_after=Pt(1)
