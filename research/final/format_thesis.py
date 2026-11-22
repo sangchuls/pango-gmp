@@ -48,11 +48,35 @@ for p in d.paragraphs:
     if len(t)>60 and p.alignment is None and p.paragraph_format.left_indent is None and not t.startswith(('자료:','주제어')):
         p.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY; p.paragraph_format.first_line_indent=Cm(0.5)
         p.paragraph_format.space_after=Pt(2)
-# 표 안은 촘촘하게
+# 표: 9pt, 줄간격 1.15, 글자·선 검정, 음영 연한 회색
+def shade(tc,fill):
+    tcPr=tc.get_or_add_tcPr()
+    for e in tcPr.findall(qn('w:shd')): tcPr.remove(e)
+    if fill:
+        sh=OxmlElement('w:shd'); sh.set(qn('w:val'),'clear'); sh.set(qn('w:color'),'auto'); sh.set(qn('w:fill'),fill); tcPr.append(sh)
 for tb in d.tables:
-    for row in tb.rows:
+    tblPr=tb._tbl.tblPr
+    for e in tblPr.findall(qn('w:tblBorders')): tblPr.remove(e)
+    bd=OxmlElement('w:tblBorders')
+    for side in ('top','left','bottom','right','insideH','insideV'):
+        e=OxmlElement('w:'+side); e.set(qn('w:val'),'single'); e.set(qn('w:sz'),'4'); e.set(qn('w:space'),'0'); e.set(qn('w:color'),'000000'); bd.append(e)
+    tblPr.append(bd)
+    for ri,row in enumerate(tb.rows):
         for c in row.cells:
-            for p in c.paragraphs: p.paragraph_format.line_spacing=1.25; p.paragraph_format.first_line_indent=None
+            shade(c._tc,'D9D9D9' if ri==0 else ('F2F2F2' if ri%2==0 else None))
+            for p in c.paragraphs:
+                p.paragraph_format.line_spacing=1.15; p.paragraph_format.first_line_indent=None
+                p.paragraph_format.space_before=Pt(1); p.paragraph_format.space_after=Pt(1)
+            for r in c._tc.iter(qn('w:r')):
+                rpr=r.find(qn('w:rPr'))
+                if rpr is None:
+                    rpr=OxmlElement('w:rPr'); r.insert(0,rpr)
+                for tag in ('w:color','w:sz','w:szCs','w:u'):
+                    for e in rpr.findall(qn(tag)): rpr.remove(e)
+                fonts(rpr,'Times New Roman','바탕')
+                col=OxmlElement('w:color'); col.set(qn('w:val'),'000000'); rpr.append(col)
+                sz=OxmlElement('w:sz'); sz.set(qn('w:val'),'18'); rpr.append(sz)
+                szc=OxmlElement('w:szCs'); szc.set(qn('w:val'),'18'); rpr.append(szc)
 # ---- 표지·차례 제거 대상 (앞 4개 단락 = 구 표지)
 body=d.element.body
 paras=d.paragraphs
