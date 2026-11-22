@@ -148,9 +148,9 @@ const caseSlide = (title, notes, f, ar, bul, weak, source) => {
   const h = 4.9, w = Math.min(7.2, h * ar);
   img(s, f, 0.6, 1.4, w, h);
   const x = 0.6 + w + 0.35, W = 12.7 - x;
-  T(s, '확인된 사항 (● 충족)', { x, y: 1.4, w: W, h: 0.4, fontSize: 18, bold: true, color: C.accent1 });
+  T(s, '구현된 점', { x, y: 1.4, w: W, h: 0.4, fontSize: 18, bold: true, color: C.accent1 });
   bullets(s, bul, x, 1.9, W, 2.8, 15);
-  T(s, '부분 충족·미흡 항목', { x, y: 4.75, w: W, h: 0.4, fontSize: 18, bold: true, color: '5E5A55' });
+  T(s, '보완 필요', { x, y: 4.75, w: W, h: 0.4, fontSize: 18, bold: true, color: '5E5A55' });
   bullets(s, weak, x, 5.2, W, 1.4, 14);
   src(s, source); return s; };
 caseSlide('사례 A: 전력 이중화 검토 앱', '사례 A는 이중화 방식과 변압기 용량으로 전기실 수를 계산하고 계통을 그림으로 보여 줍니다. 계산식이 화면에 그대로 나오고, 제가 363개 결과를 직접 계산과 대조해 모두 일치했습니다. 보완할 점은 일부 기준값의 출처가 코드 안에만 있고 의견 이력이 개발자 쪽에 남지 않는다는 것입니다.', 'fig_app1_b_diagram_crop.png', 1.27,
