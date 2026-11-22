@@ -48,6 +48,11 @@ for p in d.paragraphs:
     if len(t)>60 and p.alignment is None and p.paragraph_format.left_indent is None and not t.startswith(('자료:','주제어')):
         p.alignment=WD_ALIGN_PARAGRAPH.JUSTIFY; p.paragraph_format.first_line_indent=Cm(0.5)
         p.paragraph_format.space_after=Pt(2)
+for p in d.paragraphs:
+    m=re.match(r'^<표 (\d+-\d+)>\s*(.*)$',p.text.strip())
+    if m and p.runs:
+        p.runs[0].text='표 %s. %s'%(m.group(1),m.group(2)); p.runs[0].font.bold=False
+        for r in p.runs[1:]: r._r.getparent().remove(r._r)
 # 표: 9pt, 줄간격 1.15, 글자·선 검정, 음영 연한 회색
 def shade(tc,fill):
     tcPr=tc.get_or_add_tcPr()
@@ -56,16 +61,24 @@ def shade(tc,fill):
         sh=OxmlElement('w:shd'); sh.set(qn('w:val'),'clear'); sh.set(qn('w:color'),'auto'); sh.set(qn('w:fill'),fill); tcPr.append(sh)
 for tb in d.tables:
     tblPr=tb._tbl.tblPr
+    for tag in ('w:tblStyle','w:tblLook'):
+        for e in tblPr.findall(qn(tag)): tblPr.remove(e)
     for e in tblPr.findall(qn('w:tblBorders')): tblPr.remove(e)
     bd=OxmlElement('w:tblBorders')
-    for side,val,sz,col in (('top','single','8','000000'),('left','nil','0','auto'),('bottom','single','8','000000'),('right','nil','0','auto'),('insideH','single','4','595959'),('insideV','single','4','595959')):
+    for side,val,sz,col in (('top','single','12','000000'),('left','nil','0','auto'),('bottom','single','12','000000'),('right','nil','0','auto'),('insideH','single','4','000000'),('insideV','single','4','000000')):
         e=OxmlElement('w:'+side); e.set(qn('w:val'),val); e.set(qn('w:sz'),sz); e.set(qn('w:space'),'0'); e.set(qn('w:color'),col); bd.append(e)
     tblPr.append(bd)
     for ri,row in enumerate(tb.rows):
         for c in row.cells:
-            shade(c._tc,'BFBFBF' if (ri==0 or ri%2==0) else None)
+            shade(c._tc,'D9D9D9' if ri==0 else None)
             tcPr=c._tc.get_or_add_tcPr()
             for e in tcPr.findall(qn('w:tcBorders')): tcPr.remove(e)
+            for e in tcPr.findall(qn('w:vAlign')): tcPr.remove(e)
+            va=OxmlElement('w:vAlign'); va.set(qn('w:val'),'center'); tcPr.append(va)
+            if ri==0:
+                for pp in c.paragraphs:
+                    pp.alignment=WD_ALIGN_PARAGRAPH.CENTER
+                    for rr in pp.runs: rr.font.bold=True
             for p in c.paragraphs:
                 p.paragraph_format.line_spacing=1.15; p.paragraph_format.first_line_indent=None
                 p.paragraph_format.space_before=Pt(1); p.paragraph_format.space_after=Pt(1)
