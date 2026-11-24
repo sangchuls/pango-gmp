@@ -10,7 +10,9 @@ FIG='/home/user/pango-gmp/research/figures/'
 d=docx.Document(TPL); body=d.element.body; els=list(body)
 from docx.enum.text import WD_LINE_SPACING
 bt=d.styles['Body Text'].paragraph_format; bt.line_spacing_rule=WD_LINE_SPACING.SINGLE
-d.styles['절제목'].paragraph_format.space_before=Pt(6)
+for _n in ('장제목','절제목','항제목','참고문헌내용'):
+    d.styles[_n].paragraph_format.line_spacing_rule=WD_LINE_SPACING.SINGLE
+d.styles['장제목'].font.size=Pt(12)
 T={'cap_fig':els[22],'cap_tab':els[29],'tbl':els[30],'ref':els[41],'body':els[6],'empty':els[14]}
 T={k:copy.deepcopy(v) for k,v in T.items()}
 for el in els[4:-1]: body.remove(el)          # 샘플 본문 삭제 (제목표·1단 구역 유지)
